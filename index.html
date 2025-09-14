@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FIB Bewerbung - Tim Chessee</title>
+<style>
+/* Basis Styles */
+body {
+  margin: 0;
+  font-family: 'Times New Roman', Times, serif;
+  color: #fff;
+  overflow-x: hidden;
+  text-align: center;
+  position: relative;
+  background: #111;
+}
+
+/* Hintergrund-Wasserzeichen FIB */
+body::before {
+  content: "";
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 800px;
+  height: 800px;
+  background: url("https://bb96bae4bf.cbaul-cdnwnd.com/1e75d494194a7eed7917fd63cc15f723/200000002-8bebe8bec0/700/fib-png--512.png?ph=bb96bae4bf") no-repeat center center;
+  background-size: contain;
+  opacity: 0.15;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Sterne Hintergrund */
+.star {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: white;
+  border-radius: 100%;
+  opacity: 0;
+  animation: twinkle 2s infinite ease-in-out;
+}
+@keyframes twinkle {0%,100%{opacity:0;}50%{opacity:1;}}
+
+/* Loader */
+#loader {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: #0a0a0a;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+  transition: opacity 1s ease;
+}
+#loader.fade-out {opacity: 0; pointer-events: none;}
+#loader h1 {font-size: 4em; margin-bottom: 20px; letter-spacing: 6px; color: #fff; text-shadow: 0 0 15px #fff;}
+#loader-dots {display:flex;justify-content:center;gap:6px;margin-bottom:15px;}
+#loader-dots div {width:10px; height:10px; background:#fff; border-radius:50%; opacity:0.3; animation: blink 1.2s infinite;}
+#loader-dots div:nth-child(1){animation-delay:0s;}
+#loader-dots div:nth-child(2){animation-delay:0.2s;}
+#loader-dots div:nth-child(3){animation-delay:0.4s;}
+@keyframes blink{0%,80%,100%{opacity:0.3;transform:scale(1);}40%{opacity:1;transform:scale(1.5);}}
+#progress-bar {width:400px;height:16px;background:#222;border:2px solid #fff;border-radius:8px;overflow:hidden;margin:10px 0;}
+#progress {width:0;height:100%;background:#fff;box-shadow:0 0 20px #fff;transition:width 0.3s;}
+#status {font-size:28px;color:#fff;text-shadow:0 0 8px #fff;margin-top:10px;}
+
+/* Header Logo */
+.header-logo {
+  position: fixed;
+  top: 10px;
+  right: 20px;
+  width: 150px;
+  z-index:5;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed; top: 50%; left: 10px; transform: translateY(-50%);
+  width: 130px; background: rgba(20,20,20,0.85);
+  padding: 10px; display:flex; flex-direction:column; gap:10px;
+  border:1px solid #fff; border-radius:15px; z-index:2;
+}
+.sidebar a {text-decoration:none; color:#fff; padding:8px; border:1px solid #fff; border-radius:10px; transition: all 0.3s; font-size:14px; text-align:center; text-shadow:0 0 6px #fff;}
+.sidebar a:hover, .sidebar a.active {background: rgba(255,255,255,0.1); box-shadow:0 0 15px #fff;}
+
+/* Boxen */
+#main {display:none;position:relative;z-index:1;padding:60px 0;flex-direction:column;align-items:center;display:flex;}
+.box {background: rgba(20,20,20,0.85); border:2px solid #fff; border-radius:20px; padding:50px; margin:50px auto; width:85%; max-width:1000px; box-shadow: inset 0 0 15px rgba(255,255,255,0.4); transition: all 0.3s;}
+.box:hover {box-shadow: 0 0 25px #fff;}
+.box h2 {margin-top:0;color:#fff;text-shadow:0 0 15px #fff;font-size:28px;}
+.box p {color:#fff;text-shadow:0 0 10px #fff;font-size:20px;margin:10px 0;text-align:left;}
+
+/* Profil */
+.profile-container {display:flex;gap:30px;flex-wrap:wrap;justify-content:center;}
+.profile-left {flex:1 1 300px;background:#333;border-radius:20px;height:400px;border:2px solid #fff;box-shadow:0 0 20px #fff;}
+.profile-right {flex:1 1 300px;display:flex;flex-direction:column;gap:15px;}
+.profile-small-box {background: rgba(20,20,20,0.9);border:2px solid #fff;border-radius:15px; padding:20px;text-align:center;color:#fff;font-size:18px;box-shadow:0 0 10px #fff inset;transition: all 0.3s;}
+.profile-small-box:hover {box-shadow:0 0 20px #fff;}
+</style>
+</head>
+<body>
+
+<!-- Header Logo -->
+<img src="https://bb96bae4bf.cbaul-cdnwnd.com/1e75d494194a7eed7917fd63cc15f723/200000002-8bebe8bec0/700/fib-png--512.png?ph=bb96bae4bf" class="header-logo" alt="FIB Logo">
+
+<!-- Loader -->
+<div id="loader">
+  <h1><u>FIB HIGHCOMMAND BEWERBUNG</u></h1>
+  <div id="loader-dots"><div></div><div></div><div></div></div>
+  <div id="progress-bar"><div id="progress"></div></div>
+  <div id="status">🚀 Starte Bewerbungs-Infos... 0%</div>
+</div>
+
+<!-- Sidebar -->
+<div class="sidebar">
+  <a href="#box1" class="active">Vorwort</a>
+  <a href="#box2">Profil</a>
+  <a href="#box3">Erfahrung</a>
+  <a href="#box4">Leistung</a>
+  <a href="#box5">High Command</a>
+  <a href="#box6">Schluss</a>
+</div>
+
+<div id="main">
+
+<!-- Box1 Vorwort -->
+<div class="box" id="box1">
+<h2>Vorwort</h2>
+<p>Vielen Dank fürs Durchlesen meiner Bewerbung zum 19.Inspector. Ich freue mich sehr, wenn wir wieder voneinander hören.😊</p>
+</div>
+
+<!-- Box2 Profil -->
+<div class="box" id="box2">
+  <h2>Profil</h2>
+  <div class="profile-container">
+    
+    <!-- Linke Box mit Bild als Hintergrund bleibt gleich -->
+    <div class="profile-left" style="
+      background-image: url('https://i.imgur.com/QQn3hEB.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    ">
+    </div>
+
+    <!-- Rechte Box mit Infos -->
+    <div class="profile-right" style="position: relative;">
+      <!-- Overlay Bild über den Namen -->
+      <img src="https://i.imgur.com/KJE6VrS.png" style="
+          position: absolute;
+          top: -0px;  /* Abstand nach oben */
+          left: 55%;
+          transform: translateX(-50%);
+          width: 150px;  /* Größe des Badges */
+          height: 65px;
+          z-index: 2;
+      ">
+      
+      <div class="profile-small-box"><strong>Name:</strong> Tim Chessee</div>
+      <div class="profile-small-box"><strong>Discord:</strong> leo_1._.</div>
+      <div class="profile-small-box"><strong>ID:</strong> 264694</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Box3 Erfahrung -->
+<div class="box" id="box3">
+<h2>Erfahrung</h2>
+<p><strong><u>Vielfältige Behördenkenntnis:</u></strong> Meine Arbeit beim SAHP und GOV hat mir tiefgehende Einblicke in unterschiedliche staatliche Strukturen ermöglicht. Dadurch kann ich Zusammenhänge schnell erkennen, Prozesse verknüpfen und effiziente Lösungen entwickeln.</p>
+<p><strong><u>Engagierter Einsatz:</u></strong> Ich besitze fundiertes Wissen im öffentlichen Recht, Beamtendienstrecht sowie in Ermittlungs- und Verfahrensvorschriften. Dies befähigt mich, komplexe Situationen richtig einzuschätzen und stets rechtssicher zu handeln.</p>
+<p><strong><u>Rechtliches Fundament:</u></strong> Ich bin regelmäßig im Dienst und übernehme wann immer möglich Führungsverantwortung. Ob bei der Einsatzleitung, der Koordination oder Unterstützung von Ermittlungen – ich handle zuverlässig, überlegt und entschlossen, auch unter Druck.</p>
+</div>
+
+<!-- Box4 Leistung -->
+<div class="box" id="box4">
+<h2>Leistung</h2>
+<p><strong><u>Hohes Engagement:</u></strong> Jede Aufgabe bearbeite ich mit vollem Einsatz, unabhängig von Uhrzeit oder Schwierigkeit. Meine konstante Aktivität zeigt, dass ich das Team immer dort unterstütze, wo es gebraucht wird.</p>
+<p><strong><u>Aktive Rolle in der FIBCO:</u></strong> Ich bin sehr aktiv in der FIBCO tätig und trage regelmäßig zur Weiterentwicklung unserer Einheit bei. Meine Erfahrung und Vorschläge helfen, Abläufe zu verbessern, und ich werde diese Aktivität auch weiterhin engagiert zeigen, um die FIBCO zu stärken.</p>
+<p><strong><u>Teamorientierung & Mentoring:</u></strong> Ich stehe meinen Kollegen stets zur Seite, teile mein Wissen und unterstütze neue Mitglieder, nach dem Prinzip „Führung durch Vorbild“.</p>
+<p><strong><u>Verantwortungsbewusstsein:</u></strong> Zuverlässigkeit und Sorgfalt sind für mich selbstverständlich. Verantwortung sehe ich als Chance, nachhaltige Verbesserungen zu erreichen, und handle stets rechtskonform.</p>
+</div>
+
+<!-- Box5 High Command -->
+<div class="box" id="box5">
+<h2>Führung & Eignung für das High Command</h2>
+<p>
+  <strong><u>Führungskompetenz:</u></strong>
+   Ich treffe durchdachte Entscheidungen, bleibe ruhig und verlässlich, auch in schwierigen Situationen, und übernehme Verantwortung für Team und Abläufe.
+  </p>
+<p>
+  <strong><u>Vorbildfunktion & Loyalität:</u></strong> 
+  Disziplin, Respekt, Neutralität und Pflichtbewusstsein sind für mich gelebte Werte. Ich identifiziere mich voll mit den Zielen und Prinzipien des FIB.
+</p>
+<p>
+  <strong><u>Klare Kommunikation:</u></strong>
+  Ich kommuniziere sachlich, respektvoll und klar – unabhängig vom Rang, immer auf Augenhöhe mit Kollegen und Vorgesetzten.
+</p>
+<p>
+  <strong><u>Fokus auf Weiterentwicklung:</u></strong>
+  Ich möchte das FIB aktiv mitgestalten, ein starkes, zukunftsorientiertes High Command aufbauen und meine Aktivitäten in der FIBCO weiterhin gezielt einsetzen, um nachhaltige Verbesserungen zu erzielen.
+</p>
+</div>
+
+<!-- Box6 Schlusswort -->
+<div class="box" id="box6">
+<h2>Schlusswort</h2>
+<p>Ich bin bereit, den nächsten Schritt zu gehen. Mit Engagement, Einsatzbereitschaft und klaren Zielen möchte ich als Inspector mehr Verantwortung übernehmen und das FIB weiter voranbringen. Mein Ziel ist es, in das High Command aufzusteigen – nicht aus Prestige, sondern um einen echten Beitrag leisten zu können, insbesondere durch meine aktive Rolle in der FIBCO.</p>
+<p>Ich danke Ihnen herzlich für die Zeit, die Sie sich für meine Bewerbung nehmen, und würde mich sehr über eine positive Rückmeldung freuen.</p>
+<p><u>Mit freundlichen Grüßen,</u><br><u>Tim Chessee🫶</u></p>
+<p style="font-size: 12px;"><u>PS: Liebe Grüße an Mason Blade und Ugur Borek♥️</u></p>
+</div>
+
+</div>
+
+<script>
+// Loader
+let progress=0;
+let duration=4000;
+let steps=100;
+let intervalTime=duration/steps;
+let interval=setInterval(()=>{
+  progress++;
+  if(progress>100) progress=100;
+  document.getElementById("progress").style.width=progress+"%";
+  document.getElementById("status").innerText="🚀 Starte Bewerbungs-Infos... "+progress+"%";
+  if(progress>=100){
+    clearInterval(interval);
+    setTimeout(()=>{
+      document.getElementById("loader").classList.add("fade-out");
+      setTimeout(()=>{document.getElementById("main").style.display="flex";},1000);
+    },200);
+  }
+},intervalTime);
+
+// Sidebar Active
+const sections=document.querySelectorAll(".box");
+const navLinks=document.querySelectorAll(".sidebar a");
+window.addEventListener("scroll",()=>{
+  let current="";
+  sections.forEach(section=>{
+    const sectionTop=section.offsetTop-150;
+    if(pageYOffset>=sectionTop){current=section.getAttribute("id");}
+  });
+  navLinks.forEach(link=>{link.classList.remove("active");if(link.getAttribute("href")==="#"+current){link.classList.add("active");}});
+});
+
+// Sterne Hintergrund
+const starCount=800;
+const pageHeight=document.body.scrollHeight;
+for(let i=0;i<starCount;i++){
+  const star=document.createElement('div');
+  star.classList.add('star');
+  star.style.top=Math.random()*pageHeight+'px';
+  star.style.left=Math.random()*100+'vw';
+  star.style.animationDuration=(1+Math.random()*2)+'s';
+  document.body.appendChild(star);
+}
+
+// Sterne im Loader
+const loaderElement = document.getElementById('loader');
+const loaderStarCount = 800; // Sterne im Loader
+for(let i=0;i<loaderStarCount;i++){
+  const star = document.createElement('div');
+  star.classList.add('star');
+  star.style.top = Math.random() * loaderElement.offsetHeight + 'px';
+  star.style.left = Math.random() * loaderElement.offsetWidth + 'px';
+  star.style.width = '2px';
+  star.style.height = '2px';
+  star.style.background = 'white';
+  star.style.borderRadius = '100%';
+  star.style.opacity = Math.random();
+  star.style.animationDuration = (1 + Math.random() * 2) + 's';
+  loaderElement.appendChild(star);
+}
+</script>
+</body>
+</html>
