@@ -139,28 +139,26 @@ body::before {
   <h2>Profil</h2>
   <div class="profile-container">
     
-    <!-- Linke Box mit Bild als Hintergrund bleibt gleich -->
+    <!-- Linke Box mit Bild -->
     <div class="profile-left" style="
       background-image: url('https://i.imgur.com/QQn3hEB.png');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-    ">
-    </div>
+    "></div>
 
     <!-- Rechte Box mit Infos -->
     <div class="profile-right" style="position: relative;">
       <!-- Overlay Bild über den Namen -->
       <img src="https://i.imgur.com/KJE6VrS.png" style="
           position: absolute;
-          top: -0px;  /* Abstand nach oben */
+          top: -0px;
           left: 55%;
           transform: translateX(-50%);
-          width: 150px;  /* Größe des Badges */
+          width: 150px;
           height: 65px;
           z-index: 2;
       ">
-      
       <div class="profile-small-box"><strong>Name:</strong> Tim Chessee</div>
       <div class="profile-small-box"><strong>Discord:</strong> leo_1._.</div>
       <div class="profile-small-box"><strong>ID:</strong> 264694</div>
@@ -168,12 +166,11 @@ body::before {
   </div>
 </div>
 
-
 <!-- Box3 Erfahrung -->
 <div class="box" id="box3">
 <h2>Erfahrung</h2>
 <p><strong><u>Vielfältige Behördenkenntnis:</u></strong> Meine Arbeit beim SAHP und GOV hat mir tiefgehende Einblicke in unterschiedliche staatliche Strukturen ermöglicht. Dadurch kann ich Zusammenhänge schnell erkennen, Prozesse verknüpfen und effiziente Lösungen entwickeln.</p>
-<p><strong><u>Engagierter Einsatz:</u></strong> Ich besitze fundiertes Wissen im Öffentliches Gesetzbuch, Beamtendienstgesetz Buch sowie in Strafprozessordnung/Gerichtsverfassungsgesetz und Justizbeitreibungsgesetz. Dies befähigt mich, komplexe Situationen richtig einzuschätzen und stets rechtssicher zu handeln.</p>
+<p><strong><u>Engagierter Einsatz:</u></strong> Ich besitze fundiertes Wissen im öffentlichen Recht, Beamtendienstrecht sowie in Ermittlungs und Verfahrensvorschriften. Dies befähigt mich, komplexe Situationen richtig einzuschätzen und stets rechtssicher zu handeln.</p>
 <p><strong><u>Rechtliches Fundament:</u></strong> Ich bin regelmäßig im Dienst und übernehme wann immer möglich Führungsverantwortung. Ob bei der Einsatzleitung, der Koordination oder Unterstützung von Ermittlungen ich handle zuverlässig, überlegt und entschlossen, auch unter Druck.</p>
 </div>
 
@@ -189,22 +186,10 @@ body::before {
 <!-- Box5 High Command -->
 <div class="box" id="box5">
 <h2>Führung & Eignung für das High Command</h2>
-<p>
-  <strong><u>Führungskompetenz:</u></strong>
-   Ich treffe durchdachte Entscheidungen, bleibe ruhig und verlässlich, auch in schwierigen Situationen, und übernehme Verantwortung für Team und Abläufe.
-  </p>
-<p>
-  <strong><u>Vorbildfunktion & Loyalität:</u></strong> 
-  Disziplin, Respekt, Neutralität und Pflichtbewusstsein sind für mich gelebte Werte. Ich identifiziere mich voll mit den Zielen und Prinzipien des FIB.
-</p>
-<p>
-  <strong><u>Klare Kommunikation:</u></strong>
-  Ich kommuniziere sachlich, respektvoll und klar unabhängig vom Rang, immer auf Augenhöhe mit Kollegen und Vorgesetzten.
-</p>
-<p>
-  <strong><u>Fokus auf Weiterentwicklung:</u></strong>
-  Ich möchte das FIB aktiv mitgestalten, ein starkes, zukunftsorientiertes High Command aufbauen und meine Aktivitäten in der FIBCO weiterhin gezielt einsetzen, um nachhaltige Verbesserungen zu erzielen.
-</p>
+<p><strong><u>Führungskompetenz:</u></strong> Ich treffe durchdachte Entscheidungen, bleibe ruhig und verlässlich, auch in schwierigen Situationen, und übernehme Verantwortung für Team und Abläufe.</p>
+<p><strong><u>Vorbildfunktion & Loyalität:</u></strong> Disziplin, Respekt, Neutralität und Pflichtbewusstsein sind für mich gelebte Werte. Ich identifiziere mich voll mit den Zielen und Prinzipien des FIB.</p>
+<p><strong><u>Klare Kommunikation:</u></strong> Ich kommuniziere sachlich, respektvoll und klar unabhängig vom Rang, immer auf Augenhöhe mit Kollegen und Vorgesetzten.</p>
+<p><strong><u>Fokus auf Weiterentwicklung:</u></strong> Ich möchte das FIB aktiv mitgestalten, ein starkes, zukunftsorientiertes High Command aufbauen und meine Aktivitäten in der FIBCO weiterhin gezielt einsetzen, um nachhaltige Verbesserungen zu erzielen.</p>
 </div>
 
 <!-- Box6 Schlusswort -->
@@ -216,7 +201,24 @@ body::before {
 <p style="font-size: 12px;"><u>PS: Liebe Grüße an Mason Blade und Ugur Borek♥️</u></p>
 </div>
 
+<!-- Döner Überraschung -->
+<div style="margin:50px 0; text-align:center; position: relative; z-index: 3;">
+  <button id="donerBtn" style="
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 12px;
+    border: 2px solid #fff;
+    background: #222;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s;
+  ">Klicke hier für eine Überraschung</button>
+  
+  <img id="donerImg" src="https://www.kochkurs.org/wp-content/uploads/2021/11/doener.jpg" 
+       style="display:none; width:1000px; margin: 100px auto; border-radius:20px; box-shadow:0 0 1000px #fff; transition: all 0.5s;">
 </div>
+
+</div> <!-- Ende von #main -->
 
 <script>
 // Loader
@@ -264,7 +266,7 @@ for(let i=0;i<starCount;i++){
 
 // Sterne im Loader
 const loaderElement = document.getElementById('loader');
-const loaderStarCount = 800; // Sterne im Loader
+const loaderStarCount = 800;
 for(let i=0;i<loaderStarCount;i++){
   const star = document.createElement('div');
   star.classList.add('star');
@@ -278,6 +280,20 @@ for(let i=0;i<loaderStarCount;i++){
   star.style.animationDuration = (1 + Math.random() * 2) + 's';
   loaderElement.appendChild(star);
 }
+
+// Döner Überraschung
+const donerBtn = document.getElementById('donerBtn');
+const donerImg = document.getElementById('donerImg');
+donerBtn.addEventListener('click', () => {
+  if(donerImg.style.display === 'none'){
+    donerImg.style.display = 'block';
+    donerImg.style.transform = 'scale(0.5)';
+    setTimeout(() => { donerImg.style.transform = 'scale(1)'; }, 50);
+  } else {
+    donerImg.style.transform = 'scale(0)';
+    setTimeout(() => { donerImg.style.display = 'none'; }, 500);
+  }
+});
 </script>
 </body>
 </html>
