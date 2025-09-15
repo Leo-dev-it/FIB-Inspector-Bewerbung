@@ -69,6 +69,20 @@ body::before {
 #progress {width:0;height:100%;background:#fff;box-shadow:0 0 20px #fff;transition:width 0.3s;}
 #status {font-size:28px;color:#fff;text-shadow:0 0 8px #fff;margin-top:10px;}
 
+/* VS-Vertraulich Hinweis */
+#vs-warning {
+  margin-top: 15px;
+  font-size: 16px;
+  color: red;
+  font-weight: bold;
+  text-shadow: 0 0 10px red, 0 0 20px darkred;
+  animation: pulseRed 1.5s infinite;
+}
+@keyframes pulseRed {
+  0%, 100% { opacity: 0.7; text-shadow: 0 0 5px red, 0 0 15px darkred; }
+  50% { opacity: 1; text-shadow: 0 0 15px red, 0 0 30px darkred; }
+}
+
 /* Header Logo */
 .header-logo {
   position: fixed;
@@ -114,6 +128,13 @@ body::before {
   <div id="loader-dots"><div></div><div></div><div></div></div>
   <div id="progress-bar"><div id="progress"></div></div>
   <div id="status">🚀 Starte Bewerbungs-Infos... 0%</div>
+
+  <!-- NEUER VS-Hinweis -->
+  <div id="vs-warning">
+    Verschlusssache gemäß BDG §28 Abs. 3 Ziff. 3 – VS-VERTRAULICH<br>
+    Dieses Dokument ist ausschließlich für die Führungsebene bestimmt.<br>
+    Der Verfasser der Bewerbung, in diesem Fall ich, Tim Chessee, ist berechtigt, den Zugriff an Dritte weiterzugeben.
+  </div>
 </div>
 
 <!-- Sidebar -->
